@@ -1,5 +1,8 @@
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 28, 28, 28),
       // AppBar
       appBar: AppBar(
         title: const Text('Ana Sayfa'),
@@ -25,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             // Drawer Header
             Container(
               height: 200,
-              color: Colors.blue,
+              color: const Color.fromARGB(255, 68, 161, 160),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -36,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Kullanıcı Adı',
+                    'Profilim',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -60,18 +64,43 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            ListTile(
+              leading: const Icon(CupertinoIcons.chart_pie),
+              title: const Text('İstatistiklerim'),
+              onTap: () {
+                Navigator.pop(context);
+                context.go("/a");
+              },
+            ),
           ],
         ),
       ),
 
       // Ana içerik
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center, // Ortalamak için
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: const Text('Ana Sayfa İçeriği'),
+          // Ekranın üst kısmına yazı ekliyoruz
+          Text(
+            'Kalori Takibi ve Günlük Makro ihtiyaçlarınız!', // Buraya istediğiniz metni yazabilirsiniz
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
+          ),
+          SizedBox(height: 20), // Yazı ile animasyon arasına boşluk ekliyoruz
+          // Animasyon
+          DotLottieLoader.fromAsset(
+            "assets/motions/piechart.lottie",
+            frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+              if (dotlottie != null) {
+                return Lottie.memory(dotlottie.animations.values.single);
+              } else {
+                return Container();
+              }
+            },
           ),
         ],
       ),
