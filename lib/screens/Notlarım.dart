@@ -42,7 +42,7 @@ class _NotlarimState extends State<Notlarim> {
             label: 'Ana Sayfa',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.bell),
+            icon: Icon(CupertinoIcons.chart_bar_circle),
             label: 'Kalori takibi',
           ),
           BottomNavigationBarItem(
