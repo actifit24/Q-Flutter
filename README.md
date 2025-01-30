@@ -19,9 +19,9 @@ Actifit, kullanıcıların günlük kalori ihtiyaçlarını hesaplayabileceği, 
 
 -  **Takım Üyeleri:**
 
-- [Ali Berk Kalaycı](https://github.com/alibrkklyc)
-- [İlker Dörtışık](https://github.com/ilkerdrtsk)
-- [Arda Tunay](https://github.com/ardatunayy)
+- [Ali Berk Kalaycı](https://github.com/alibrkklyc)  Tasarım/organizsyon/animasyon/widget/screen yönetimi
+- [İlker Dörtışık](https://github.com/ilkerdrtsk)  Screen Yönetimi/ router ve icon oluşturmak/widget
+- [Arda Tunay](https://github.com/ardatunayy)  Tema yönetimi/ widget/ screen yönetimi/router
 
 
   
