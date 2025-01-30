@@ -1,46 +1,48 @@
-import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
-import 'package:flutter_app/widgets/macropiechart.dart';
 
+class Notlarim extends StatefulWidget {
+  const Notlarim({super.key});
 
-class KaloriTakibi extends StatelessWidget {
-  const KaloriTakibi({super.key});
+  @override
+  State<Notlarim> createState() => _NotlarimState();
+}
+
+class _NotlarimState extends State<Notlarim> {
+  final TextEditingController _noteController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Theme.of(context).scaffoldBackgroundColor, // Arka plan değişiyor
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Kalori Takibi', style: Theme.of(context).textTheme.titleLarge,),
-         
+        title: const Text('Notlarım'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.gear),
-            onPressed: () {
-              context.go('/d');
-            },
-          ),
-        ],
       ),
- 
-      body: MacroPieChart(),
-      
-      
-      // Alt navigasyon çubuğu
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+          controller: _noteController,
+          maxLines: null, // Kullanıcı istediği kadar satır ekleyebilir
+          keyboardType: TextInputType.multiline, // Çok satırlı yazı girişi
+          decoration: InputDecoration(
+            hintText: 'Buraya notunuzu yazın',
+            hintStyle: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),
+            border: InputBorder.none, // Kenarlık yok
+          ),
+          style: Theme.of(context).textTheme.bodyLarge, // Gece/gündüz moduna uyumlu yazı rengi
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-    
         items: const [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
             label: 'Ana Sayfa',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.chart_bar_circle),
+            icon: Icon(CupertinoIcons.bell),
             label: 'Kalori takibi',
           ),
           BottomNavigationBarItem(
@@ -62,8 +64,6 @@ class KaloriTakibi extends StatelessWidget {
           } else if (index == 3) {
             context.go('/b');
           }
-
-          // Navigasyon işlemleri buraya gelecek
         },
       ),
     );

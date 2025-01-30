@@ -7,52 +7,69 @@ class MacroPieChart extends StatefulWidget {
 }
 
 class _MacroPieChartState extends State<MacroPieChart> {
-  double a = 0, b = 0;
+  double gerekenKalori = 0, alinanKalori = 0;
 
   @override
   Widget build(BuildContext context) {
-    double total = a + b;
+    double kalanKalori = gerekenKalori - alinanKalori;
+    if (kalanKalori < 0) kalanKalori = 0;
+    double total = gerekenKalori > 0 ? gerekenKalori : 1;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Makro Dağılımı")),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("Günlük Makro Yüzdesi",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          SizedBox(height: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Günlük Makro Yüzdesi",
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              height: 250,
+              child: PieChart(
+                PieChartData(
+                  sections: [
+                    PieChartSectionData(
+                        color: const Color.fromARGB(255, 189, 5, 5),
+                        value: (kalanKalori / total) * 100,
+                        title:
+                            "${((kalanKalori / total) * 100).toStringAsFixed(1)}%",
+                        titleStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary
+                    ),
+                  ),
+                
 
-          // Pie Chart
-          SizedBox(
-            height: 250,
-            child: PieChart(
-              PieChartData(
-                sections: total > 0
-                    ? [
-                        PieChartSectionData(
-                            color: Colors.blue,
-                            value: (a / total) * 100,
-                            title:
-                                "%${(a / total * 100).toStringAsFixed(1)}kaldı "),
-                        PieChartSectionData(
-                            color: Colors.red,
-                            value: (b / total) * 100,
-                            title:
-                                "%${(b / total * 100).toStringAsFixed(1)}aldın "),
-                      ]
-                    : [],
+                    PieChartSectionData(
+
+                        color: const Color.fromARGB(255, 47, 198, 1),
+                        value: (alinanKalori / total) * 100,
+                        title:
+                            "${((alinanKalori / total) * 100).toStringAsFixed(1)}%",
+                         titleStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary
+                    ),
+                  ),
+                  ],
+                  sectionsSpace: 2,
+                  centerSpaceRadius: 40,
+                ),
               ),
             ),
-          ),
-
-          SizedBox(height: 20),
-
-          // Kullanıcıdan veri giriş alanları (TextField)
-          textField("Günlük gereken kalori (g)",
-              (v) => setState(() => a = double.tryParse(v) ?? 0)),
-          textField("aldığınız kalori ",
-              (v) => setState(() => b = double.tryParse(v) ?? 0)),
-        ]),
+            SizedBox(height: 20),
+            textField("Günlük gereken kalori (g)", (v) {
+              setState(() => gerekenKalori = double.tryParse(v) ?? 0);
+            }),
+            textField("Aldığınız kalori", (v) {
+              setState(() => alinanKalori = double.tryParse(v) ?? 0);
+            }),
+          ],
+        ),
       ),
     );
   }
@@ -66,7 +83,7 @@ class _MacroPieChartState extends State<MacroPieChart> {
           labelText: label,
           border: OutlineInputBorder(),
           filled: true,
-          fillColor: Colors.white,
+         fillColor: Theme.of(context).colorScheme.surface,
         ),
         onChanged: onChanged,
       ),
