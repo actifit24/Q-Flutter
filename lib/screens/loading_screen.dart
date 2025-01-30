@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../core/constants.dart';
+import 'package:flutter_app/core/constants.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
 
-  get arkaplanrengi => Color.fromARGB(255, 28, 28, 28);
+  get arkaplanrengi => const Color.fromARGB(255, 28, 28, 28);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class LoadingScreen extends StatelessWidget {
               ),
             ),
             // biraz boslok lazim
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),

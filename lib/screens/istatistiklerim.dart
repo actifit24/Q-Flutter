@@ -4,42 +4,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
+class Istatistiklerim extends StatelessWidget {
+  const Istatistiklerim ({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 26, 25, 25),
-      // AppBar
+      backgroundColor: Color.fromARGB(255, 28, 28, 28),
       appBar: AppBar(
-        title: const Text('Ana Sayfa'),
+        title: Text('İstatistiklerim'),
         actions: [
           IconButton(
-            icon: const Icon(CupertinoIcons.bell),
+            icon: Icon(CupertinoIcons.bell),
             onPressed: () {},
           ),
         ],
-      ),
-
-      // Drawer (Yan Menü)
+      ),    
       drawer: Drawer(
         child: Column(
           children: [
-            // Drawer Header
             Container(
               height: 200,
-              color: const Color.fromARGB(255, 68, 161, 160),
+              color: Color.fromARGB(255, 68, 161, 160),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     CupertinoIcons.person_circle,
                     size: 80,
                     color: Colors.white,
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
+                  SizedBox(height: 10),
+                  Text(
                     'Profilim',
                     style: TextStyle(
                       color: Colors.white,
@@ -49,26 +46,26 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // Menü öğeleri
+            //yan menü
             ListTile(
-              leading: const Icon(CupertinoIcons.home),
-              title: const Text('Ana Sayfa'),
+              leading: Icon(CupertinoIcons.home),
+              title: Text('Ana Sayfa'),
               onTap: () {
                 Navigator.pop(context);
                 context.go('/home');
               },
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.settings),
-              title: const Text('İstatistiklerim'),
+              leading: Icon(CupertinoIcons.settings),
+              title: Text('İstatistiklerim'),
               onTap: () {
                 Navigator.pop(context);
                 context.go('/b');
               },
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.chart_pie),
-              title: const Text('Kalori Takibi'),
+              leading: Icon(CupertinoIcons.chart_pie),
+              title: Text('Kalori Takibi'),
               onTap: () {
                 Navigator.pop(context);
                 context.go("/a");
@@ -77,15 +74,14 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
-      // Ana içerik
-      body: Column(
+      //ana içerik 
+     body: const Column(
         mainAxisAlignment: MainAxisAlignment.center, // Ortalamak için
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Ekranın üst kısmına yazı ekliyoruz
           Text(
-            'Kalori Takibi ve Günlük Makro ihtiyaçlarınız!', // Buraya istediğiniz metni yazabilirsiniz
+            'Bu gün bu kadar şey başardn!', // Buraya istediğiniz metni yazabilirsiniz
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -93,21 +89,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20), // Yazı ile animasyon arasına boşluk ekliyoruz
-          // Animasyon
-          DotLottieLoader.fromAsset(
-            "assets/motions/piechart.lottie",
-            frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
-              if (dotlottie != null) {
-                return Lottie.memory(dotlottie.animations.values.single);
-              } else {
-                return Container();
-              }
-            },
-          ),
-        ],
-      ),
-
-      // Alt navigasyon çubuğu
+        ]
+       ),
+       // Alt navigasyon çubuğu
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color.fromARGB(0, 27, 26, 26),
@@ -144,6 +128,8 @@ class HomeScreen extends StatelessWidget {
           // Navigasyon işlemleri buraya gelecek
         },
       ),
+
     );
+      
   }
 }

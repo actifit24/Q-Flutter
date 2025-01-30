@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/istatistiklerim.dart';
 import 'package:flutter_app/screens/kalori_takibi.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/loading_screen.dart';
@@ -20,5 +21,12 @@ final router = GoRouter(
       path: '/a',
       builder: (context, state) => const KaloriTakibi(),
     ),
+ GoRoute(
+      path: '/b',
+      builder: (context, state) => const Istatistiklerim(),
+    ),
+  
   ],
 );
+
+
