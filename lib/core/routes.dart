@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/istatistiklerim.dart';
+import 'package:flutter_app/screens/Ayarlar.dart';
+import 'package:flutter_app/screens/Profilim.dart';
+import 'package:flutter_app/screens/Notlar%C4%B1m.dart';
 import 'package:flutter_app/screens/kalori_takibi.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/loading_screen.dart';
@@ -23,8 +25,17 @@ final router = GoRouter(
     ),
  GoRoute(
       path: '/b',
-      builder: (context, state) => const Istatistiklerim(),
+      builder: (context, state) => const Notlarim(),
     ),
+    GoRoute(
+      path: '/c',
+      builder: (context, state) => const Profilim(),
+    ),
+    GoRoute(
+      path: '/d',
+      builder: (context, state) => const Ayarlar (),
+    ),
+  
   
   ],
 );
