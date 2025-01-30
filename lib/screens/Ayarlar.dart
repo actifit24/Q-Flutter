@@ -1,56 +1,56 @@
-import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import '../core/themes.dart';
 
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class Ayarlar extends StatelessWidget {
+  const Ayarlar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-     backgroundColor: Theme.of(context).scaffoldBackgroundColor, // Arka plan değişiyor
-
-      // AppBar
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title:  Text('Ana Sayfa', style: Theme.of(context).textTheme.titleLarge,),
-        
+        title: Text(
+          'Ayarlar',
+          style: Theme.of(context).textTheme.titleLarge, // Dinamik başlık rengi
+        ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(CupertinoIcons.gear),
-            onPressed: () {
-              context.go('/d');
-            },
-          ),
-        ],
       ),
-
-      // Ana içerik
+      
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // Ortalamak için
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-        
-        
-          // Ekranın üst kısmına yazı ekliyoruz
           Text(
-            '""Roma bir günde inşa edilmedi, her küçük adım büyük bir değişimin başlangıcıdır.""',
-         style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 24)
-
+            'Ayarlar',
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
-          
-          SizedBox(height: 20),
-           Image.asset('assets/images/dagaçikanherif.png'),
-           // Yazı ile fotoğraf  arasına boşluk ekliyoruz
+          const SizedBox(height: 20),
+
+          ListTile(
+            title: Text(
+              "Gece Modu",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            trailing: Switch(
+              value: themeProvider.themeMode == ThemeMode.dark,
+              onChanged: (value) {
+                themeProvider.toggleTheme(value);
+              },
+            ),
+          ),
         ],
       ),
 
-      // Alt navigasyon çubuğu
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
