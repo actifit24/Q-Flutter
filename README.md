@@ -124,7 +124,9 @@ lib/
 
 ## Ekran Görüntüleri
 
-[Uygulama ekran görüntüleri buraya eklenecek]
+https://github.com/user-attachments/assets/01d241cd-d204-4c11-af6b-ee5b0130bd57
+
+
 
   
 
